@@ -35,20 +35,24 @@ $(document).ready(function() {
 })
 
 
-// calling the priceChange function every 15 seconds
-function everyFifteen() {
-	setInterval(priceChange, 2000); 
 
-	// randomly changing the fruit price
-	function priceChange(specificFruit) {
-		//var newPrice = randomNumber(.01, .5);
-		fruit[i][1] += randomNumber(-50, 50) / 100;
-		// if(fruit > 9.99 || fruit < .5) {
-		// 	;
-		// }
-		console.log(fruit[i][1]);
+setInterval(priceChange, 15000);
+
+// randomly changing the fruit price
+function priceChange() {
+	for (var i = 0; i < fruits.length; i++) {
+		var randomPrice = randomNumber(-.50, .50);
+		var currentPrice = fruits[i][1];
+		var newPrice = randomPrice + currentPrice;
+		if (newPrice < .50) {
+			newPrice = .50;
+		} else if (newPrice > 9.99) {
+			newPrice = 9.99;
+		}
+		fruits[i][1] = newPrice;
 	}
 }
+
 
 
 
@@ -58,9 +62,10 @@ function buyFruit() {
 
 // everyFifteen();
 
-for(i=0; i < fruits.length; i++) {
-	everyFifteen(fruits[i]);
-}
+// We can use just 1 interval for every fifteen seconds to change the price for all of the fruit's at once. - John
+//for(i=0; i < fruits.length; i++) {
+//	everyFifteen(fruits[i]);
+//}
 
 
 
